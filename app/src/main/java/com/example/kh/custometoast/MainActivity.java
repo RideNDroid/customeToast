@@ -1,6 +1,7 @@
-package com.example.kh.custometoast;
+package com.example.custometoast;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,16 +15,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        LayoutInflater li = getLayoutInflater();
+        //Getting the View object as defined in the customtoast.xml file
+        View layout = li.inflate(R.layout.custome_toast,(ViewGroup) findViewById(R.id.toast_layout));
 
-    }
-    public void customeProcess(View view){
-        Toast toast = new Toast(this);
-        LayoutInflater inflater = getLayoutInflater();
-        view = inflater.inflate(R.layout.toast_custome, (ViewGroup) findViewById(R.id.linear));
+        //Creating the Toast object
+        Toast toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0,0);
-        toast.setView(view);
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setView(layout);//setting the view of custom toast layout
         toast.show();
-
     }
 }
